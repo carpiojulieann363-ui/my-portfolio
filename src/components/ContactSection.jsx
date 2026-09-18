@@ -25,7 +25,7 @@ function ContactSection() {
             required
           />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value="https://carpiojulieann363-ui.github.io/myportfolio/#contact" />
+          <input type="hidden" name="_next" value="https://my-portfolio.vercel.app/#contact" />
           <input type="text" name="_honey" className="form-honey" tabIndex={-1} autoComplete="off" aria-hidden="true" />
           <button type="submit" className="btn-primary">
             Send Message
