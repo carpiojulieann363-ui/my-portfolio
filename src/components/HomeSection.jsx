@@ -1,6 +1,4 @@
 import cutout from '../assets/profile-cutout.webp'
-import heroPortrait from '../assets/home-portrait.jpg'
-import heroMobile from '../assets/home-mobile.jpg'
 
 const base = import.meta.env.BASE_URL
 
@@ -40,17 +38,7 @@ function HomeSection() {
           </div>
         </div>
         <div className="home-visual">
-          <picture>
-            <source
-              media="(max-width: 480px)"
-              srcSet={heroMobile}
-            />
-            <source
-              media="(max-width: 1024px)"
-              srcSet={heroPortrait}
-            />
-            <img src={cutout} alt="Julie Ann Carpio" className="home-cutout" />
-          </picture>
+          <img src={cutout} alt="Julie Ann Carpio" className="home-cutout" />
         </div>
       </div>
       <button className="home-scroll" onClick={() =>
