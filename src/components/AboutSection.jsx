@@ -29,7 +29,7 @@ function AboutSection() {
           </div>
         </div>
         <div className="about-images">
-          <img src={`${base}Home_Julie.jpg`} alt="Julie Ann Carpio" className="about-img" />
+          <img src={`${base}10.jpg`} alt="Julie Ann Carpio" className="about-img" />
         </div>
       </div>
     </section>
