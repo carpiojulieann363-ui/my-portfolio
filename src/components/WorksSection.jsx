@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 
 const base = import.meta.env.BASE_URL
 
@@ -26,63 +26,133 @@ const PROJECTS = [
   },
 ]
 
-const canHover = () => window.matchMedia('(hover: hover)').matches
-
-function ProjectVideo({ title, video, poster, className }) {
+function ProjectVideo({ title, video, poster }) {
+  const wrapRef = useRef(null)
   const videoRef = useRef(null)
+  const hoverPlayAt = useRef(0)
+  const reducedMotion = useRef(
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
   const [playing, setPlaying] = useState(false)
+  const [errored, setErrored] = useState(false)
 
-  const play = () => {
+  const attemptPlay = useCallback((el) => {
+    if (!el) return
+    el.play()
+      .then(() => setPlaying(true))
+      .catch(() => setErrored(true))
+  }, [])
+
+  const play = useCallback(() => {
     const el = videoRef.current
-    if (el && el.paused) {
-      el.play().then(() => setPlaying(true)).catch(() => {})
-    }
-  }
+    if (el && el.paused && !errored) attemptPlay(el)
+  }, [attemptPlay, errored])
 
-  const pause = () => {
+  const pause = useCallback(() => {
     const el = videoRef.current
-    if (el && !el.paused) {
-      el.pause()
-      setPlaying(false)
-    }
-  }
+    if (el && !el.paused) el.pause()
+  }, [])
 
-  const toggle = () => (playing ? pause() : play())
+  const retry = useCallback(() => {
+    const el = videoRef.current
+    if (!el) return
+    setErrored(false)
+    el.load()
+    attemptPlay(el)
+  }, [attemptPlay])
+
+  const toggle = useCallback(() => {
+    if (errored) {
+      retry()
+      return
+    }
+    const el = videoRef.current
+    if (el && el.paused) play()
+    else pause()
+  }, [errored, retry, play, pause])
+
+  useEffect(() => {
+    const wrap = wrapRef.current
+    if (!wrap || reducedMotion.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            hoverPlayAt.current = Date.now()
+            play()
+          } else {
+            pause()
+          }
+        }
+      },
+      { threshold: 0.4 }
+    )
+
+    observer.observe(wrap)
+    return () => {
+      observer.disconnect()
+      pause()
+    }
+  }, [play, pause])
+
+  const handleWrapClick = () => {
+    if (Date.now() - hoverPlayAt.current < 300) {
+      hoverPlayAt.current = 0
+      return
+    }
+    toggle()
+  }
 
   return (
     <div
-      className={`work-thumb-wrap ${className}`}
-      role="button"
-      tabIndex={0}
-      aria-label={`Play demo video: ${title}`}
-      onClick={canHover() ? undefined : toggle}
-      onMouseEnter={canHover() ? play : undefined}
-      onMouseLeave={canHover() ? pause : undefined}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          toggle()
-        }
+      ref={wrapRef}
+      className="work-thumb-wrap"
+      role="group"
+      aria-label={`Demo video: ${title}`}
+      onMouseEnter={() => {
+        hoverPlayAt.current = Date.now()
+        play()
       }}
+      onMouseLeave={pause}
+      onClick={handleWrapClick}
     >
       <video
         ref={videoRef}
         src={video}
+        preload="metadata"
         muted
         loop
         playsInline
-        preload="none"
         poster={poster}
         className="work-thumb"
-        onEnded={() => setPlaying(false)}
-        onPause={() => setPlaying(false)}
         onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+        onError={() => setErrored(true)}
       />
-      <span className={`work-play${playing ? ' is-playing' : ''}`} aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      </span>
+      {errored ? (
+        <div className="work-error" role="alert">
+          <span className="work-error-text">Couldn't load video</span>
+          <button type="button" className="work-retry" onClick={retry}>
+            Retry
+          </button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          className={`work-play${playing ? ' is-playing' : ''}`}
+          aria-label={playing ? `Pause demo: ${title}` : `Play demo: ${title}`}
+          onClick={(e) => {
+            e.stopPropagation()
+            toggle()
+          }}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+      )}
     </div>
   )
 }

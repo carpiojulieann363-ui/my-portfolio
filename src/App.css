@@ -627,17 +627,57 @@
   background: rgba(15, 23, 42, 0.65);
   color: #fff;
   border: 2px solid rgba(248, 250, 252, 0.75);
-  pointer-events: none;
-  transition: opacity 0.2s, transform 0.2s;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+  transition: opacity 0.2s, transform 0.2s, background 0.2s, border-color 0.2s;
 }
 
 .work-play svg {
   margin-left: 3px;
 }
 
+.work-play:hover {
+  background: rgba(13, 148, 136, 0.85);
+  border-color: #fff;
+}
+
 .work-play.is-playing {
   opacity: 0;
+  pointer-events: none;
   transform: translate(-50%, -50%) scale(0.85);
+}
+
+.work-error {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--accent-bg), var(--surface-hover));
+}
+
+.work-error-text {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.work-retry {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  font: 600 13px var(--sans);
+  cursor: pointer;
+}
+
+.work-retry:hover {
+  background: var(--accent);
+  color: #fff;
 }
 
 .work-title {
