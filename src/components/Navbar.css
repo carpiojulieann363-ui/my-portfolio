@@ -168,3 +168,19 @@
     padding: 10px 16px 4px;
   }
 }
+
+@media (max-width: 480px) {
+  .nav-inner {
+    height: 54px;
+    margin-top: 6px;
+  }
+
+  .nav-logo {
+    font-size: 22px;
+  }
+
+  .nav-links {
+    top: 60px;
+    padding: 10px 16px 16px;
+  }
+}

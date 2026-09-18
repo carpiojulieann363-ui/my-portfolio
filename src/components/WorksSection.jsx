@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 
 const base = import.meta.env.BASE_URL
+const coarsePointer =
+  typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
 
 const PROJECTS = [
   {
@@ -40,7 +42,10 @@ function ProjectVideo({ title, video, poster }) {
     if (!el) return
     el.play()
       .then(() => setPlaying(true))
-      .catch(() => setErrored(true))
+      .catch((err) => {
+        if (err && (err.name === 'NotAllowedError' || err.name === 'AbortError')) return
+        setErrored(true)
+      })
   }, [])
 
   const play = useCallback(() => {
@@ -73,13 +78,12 @@ function ProjectVideo({ title, video, poster }) {
 
   useEffect(() => {
     const wrap = wrapRef.current
-    if (!wrap || reducedMotion.current) return
+    if (!wrap || coarsePointer || reducedMotion.current) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            hoverPlayAt.current = Date.now()
             play()
           } else {
             pause()
