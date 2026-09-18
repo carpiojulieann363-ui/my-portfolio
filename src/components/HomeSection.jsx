@@ -1,4 +1,3 @@
-import cutout from '../assets/profile-cutout.webp'
 import heroPortrait from '../assets/home-portrait.jpg'
 import heroMobile from '../assets/home-mobile.jpg'
 
@@ -45,11 +44,7 @@ function HomeSection() {
               media="(max-width: 480px)"
               srcSet={heroMobile}
             />
-            <source
-              media="(max-width: 1024px)"
-              srcSet={heroPortrait}
-            />
-            <img src={cutout} alt="Julie Ann Carpio" className="home-cutout" />
+            <img src={heroPortrait} alt="Julie Ann Carpio" className="home-cutout" />
           </picture>
         </div>
       </div>
