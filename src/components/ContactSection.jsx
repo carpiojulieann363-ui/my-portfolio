@@ -3,8 +3,8 @@ import { SOCIALS } from '../data/socials'
 function ContactSection() {
   return (
     <section id="contact" className="section contact-section">
+      <p className="section-eyebrow">( 05 ) &mdash; contact</p>
       <h2 className="section-title">Contact</h2>
-      <br />
       <p className="contact-intro">
         Have a project in mind? Let us work together.
       </p>

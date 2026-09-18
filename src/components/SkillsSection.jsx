@@ -47,8 +47,8 @@ const SKILL_CATEGORIES = [
 function SkillsSection() {
   return (
     <section id="skills" className="section skills-section">
+      <p className="section-eyebrow">( 02 ) &mdash; skills</p>
       <h2 className="section-title">Skills</h2>
-      <br />
       <p className="skills-intro">Technologies and tools I specialize in.</p>
       <div className="skills-categories">
         {SKILL_CATEGORIES.map(({ title, icon, skills }) => (

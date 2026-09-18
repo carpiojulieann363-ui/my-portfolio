@@ -160,8 +160,8 @@ function ProjectVideo({ title, video, poster }) {
 function WorksSection() {
   return (
     <section id="works" className="section works-section">
+      <p className="section-eyebrow">( 03 ) &mdash; projects</p>
       <h2 className="section-title">Projects</h2>
-      <br />
       <p className="works-intro">Projects built with creativity, passion, and modern web solutions.</p>
       <div className="works-grid">
         {PROJECTS.map(({ title, desc, tags, video, poster }) => (

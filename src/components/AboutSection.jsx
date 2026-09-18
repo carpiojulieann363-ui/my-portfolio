@@ -5,7 +5,7 @@ function AboutSection() {
     <section id="about" className="section about-section">
       <div className="about-grid">
         <div className="about-content">
-          <p className="about-eyebrow">( 01 ) &mdash; about</p>
+          <p className="section-eyebrow">( 01 ) &mdash; about</p>
           <h2 className="about-title">About Me</h2>
           <p className="about-lead">
             IT graduate &amp; frontend designer-encoder based in San Pedro,
