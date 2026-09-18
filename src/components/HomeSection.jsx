@@ -39,6 +39,7 @@ function HomeSection() {
         </div>
         <div className="home-visual">
           <img src={cutout} alt="Julie Ann Carpio" className="home-cutout" />
+          <p className="home-coord">( san pedro &middot; 14.61&deg; n )</p>
         </div>
       </div>
       <button className="home-scroll" onClick={() =>
