@@ -7,24 +7,17 @@ const base = import.meta.env.BASE_URL
 function HomeSection() {
   return (
     <section id="home" className="section home-section">
-      <picture>
-        <source
-          media="(max-width: 480px)"
-          srcSet={heroMobile}
-        />
-        <source
-          media="(max-width: 1024px)"
-          srcSet={heroPortrait}
-        />
-        <img src={cutout} alt="Julie Ann Carpio" className="home-cutout" />
-      </picture>
       <div className="home-grid">
         <div className="home-text">
-          <h1 className="home-name">
-            <span className="home-greeting">Hi There,</span>
-            I'm Julie Ann B. Carpio<br />
-            <span className="home-role">UI/UX DESIGN &amp; ENCODER</span>
-          </h1>
+          <p className="home-eyebrow">
+            <span className="status-dot" aria-hidden="true" />
+            Open to work &middot; San Pedro, Laguna
+          </p>
+          <h1 className="home-name">Julie Ann B. Carpio</h1>
+          <p className="home-role">
+            UI/UX design &amp; encoder &mdash; building clean, simple web
+            experiences.
+          </p>
           <div className="home-actions">
             <a href={`${base}CV_JulieAnnCarpio.pdf`} download className="btn-primary">
               Download CV
@@ -40,13 +33,25 @@ function HomeSection() {
               View my work
             </button>
           </div>
+          <div className="home-meta">
+            <span>carpiojulieann363@gmail.com</span>
+            <span className="home-meta-sep" aria-hidden="true" />
+            <span>Based in San Pedro, Laguna</span>
+          </div>
         </div>
-      </div>
-      <div className="home-decor" aria-hidden="true">
-        <span className="decor-dots" />
-        <span className="decor-ring decor-ring-lg" />
-        <span className="decor-ring decor-ring-sm" />
-        <span className="decor-slash" />
+        <div className="home-visual">
+          <picture>
+            <source
+              media="(max-width: 480px)"
+              srcSet={heroMobile}
+            />
+            <source
+              media="(max-width: 1024px)"
+              srcSet={heroPortrait}
+            />
+            <img src={cutout} alt="Julie Ann Carpio" className="home-cutout" />
+          </picture>
+        </div>
       </div>
       <button className="home-scroll" onClick={() =>
         document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
