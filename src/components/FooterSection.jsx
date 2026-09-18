@@ -8,6 +8,7 @@ function FooterSection() {
     <footer className="footer-section">
       <div className="footer-brand">
         <span className="footer-logo">JAC.</span>
+        <span className="footer-brand-tag">Open Work</span>
         <div className="footer-icons">
           {SOCIALS.map(({ label, url, icon }) => (
             <a key={label} href={url} className="footer-icon-link" target="_blank" rel="noopener noreferrer" title={label}>
