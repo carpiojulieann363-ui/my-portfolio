@@ -5,31 +5,26 @@ function AboutSection() {
     <section id="about" className="section about-section">
       <div className="about-grid">
         <div className="about-content">
+          <p className="about-eyebrow">( 01 ) &mdash; about</p>
           <h2 className="about-title">About Me</h2>
-          <br />
-          <p className="about-greeting">Hi, I'm Julie Ann B. Carpio</p>
-          <p>
-            I am an Information Technology graduate with a strong passion for
-            technology, web development, and continuous learning. I graduated
-            with a Bachelor of Science in Information Technology.
+          <p className="about-lead">
+            IT graduate &amp; frontend designer-encoder based in San Pedro,
+            Laguna.
           </p>
-          <p>
-            I have experience in frontend development using technologies such
-            as React.js, Angular, JavaScript, and CSS. During my On-the-Job
-            Training (OJT) at <strong>Breighton Land Inc.</strong>, I gained
-            hands-on experience in system development, programming, data
-            management, and troubleshooting, which helped strengthen my
-            technical and problem-solving skills.
+          <p className="about-body">
+            I build clean web experiences with React, Angular, JavaScript, and
+            CSS. During my on-the-job training at <strong>Breighton Land
+            Inc.</strong>, I gained hands-on experience in system development,
+            programming, data management, and troubleshooting.
           </p>
-          <p>
-            As a fresh graduate, I am eager to apply my knowledge, learn new
-            technologies, and contribute to innovative projects while
-            continuously growing as an IT professional.
+          <p className="about-body">
+            As a fresh graduate, I'm eager to apply what I've learned and keep
+            growing as an IT professional.
           </p>
           <div className="about-stats">
             <div className="about-stat">
               <span className="about-stat-number">3</span>
-              <span className="about-stat-label">PROJECTS BUILT</span>
+              <span className="about-stat-label">Projects built</span>
             </div>
           </div>
         </div>
