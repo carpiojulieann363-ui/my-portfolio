@@ -78,9 +78,6 @@ function Navbar() {
             <ThemeToggle />
           </li>
         </ul>
-        <span className="nav-desktop-toggle">
-          <ThemeToggle />
-        </span>
       </div>
     </nav>
   )

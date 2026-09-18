@@ -11,7 +11,11 @@ import FooterSection from './components/FooterSection'
 import './App.css'
 
 function App() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => {
+    if (typeof window === 'undefined') return true
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+    return !sessionStorage.getItem('intro:seen')
+  })
 
   useEffect(() => {
     if (!loading) {
@@ -20,9 +24,14 @@ function App() {
     }
   }, [loading])
 
+  const finishIntro = () => {
+    sessionStorage.setItem('intro:seen', '1')
+    setLoading(false)
+  }
+
   return (
     <>
-      {loading && <LoadingIntro onFinish={() => setLoading(false)} />}
+      {loading && <LoadingIntro onFinish={finishIntro} />}
       <Navbar />
       <main>
         <HomeSection />

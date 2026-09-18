@@ -2,6 +2,8 @@ import { SOCIALS } from '../data/socials'
 import './FooterSection.css'
 
 function FooterSection() {
+  const year = new Date().getFullYear()
+
   return (
     <footer className="footer-section">
       <div className="footer-brand">
@@ -14,7 +16,7 @@ function FooterSection() {
           ))}
         </div>
       </div>
-      <p className="footer-copyright">&copy; 2026 Julie Ann B. Carpio. All rights reserved.</p>
+      <p className="footer-copyright">&copy; {year} Julie Ann B. Carpio. All rights reserved.</p>
     </footer>
   )
 }

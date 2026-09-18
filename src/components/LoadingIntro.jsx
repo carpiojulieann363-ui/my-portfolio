@@ -12,7 +12,7 @@ function LoadingIntro({ onFinish }) {
   }, [dots])
 
   useEffect(() => {
-    const t = setTimeout(() => setFading(true), 2400)
+    const t = setTimeout(() => setFading(true), 900)
     return () => clearTimeout(t)
   }, [])
 

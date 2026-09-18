@@ -1,8 +1,9 @@
 const EVENTS = [
   {
-    year: '2022 - Present',
+    year: '2022 - 2026',
     title: 'BS IN INFORMATION TECHNOLOGY',
     subtitle: 'Saint Francis Institute of Computer Studies',
+    desc: 'Graduated with a Bachelor of Science in Information Technology.',
   },
   {
     year: '2020 - 2022',
